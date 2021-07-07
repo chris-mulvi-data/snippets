@@ -8,3 +8,9 @@ ip_regex = "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}"
 # the prifix.
 prefix = os.path.commonprefix(df['vector'].to_list())
 df['vector'].apply(lambda x: str.replace(x, prefix, '')
+
+
+# To use lookup dictionary to apply a value to a new column of a dataframe
+df['new_vector'] = df['reference_vector'].apply(
+    lambda x: dictionary[x].get('key') if x in dictionary.keys() else 'none'
+)
